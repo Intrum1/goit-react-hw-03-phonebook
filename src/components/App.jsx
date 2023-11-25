@@ -17,12 +17,19 @@ export class App extends Component {
   };
 
 componentDidMount() {
-  const savedContacts = JSON.parce(localStorage.getInem('contacts'));
+  const savedContacts = JSON.parse(localStorage.getItem('contacts'));
 
   if (savedContacts) {
     this.setState({ contacts: savedContacts})
   }
 }
+
+componentDidUpdate(prevProps, prevState) {
+  if (prevState.contacts !==this.state.contacts) {
+    localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+  }
+}
+
 
   // Обрабатывает изменения ввода фильтра
   handleFilterChange = e => {
