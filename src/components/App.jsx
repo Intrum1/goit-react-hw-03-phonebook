@@ -15,6 +15,15 @@ export class App extends Component {
     ],
     filter: '',
   };
+
+componentDidMount() {
+  const savedContacts = JSON.parce(localStorage.getInem('contacts'));
+
+  if (savedContacts) {
+    this.setState({ contacts: savedContacts})
+  }
+}
+
   // Обрабатывает изменения ввода фильтра
   handleFilterChange = e => {
     this.setState({ filter: e.target.value });
